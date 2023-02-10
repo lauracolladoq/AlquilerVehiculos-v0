@@ -101,11 +101,6 @@ public class Cliente {
 	// Un cliente será igual a otro si su DNI es el mismo.
 
 	@Override
-	public String toString() {
-		return String.format("%s %s (%s)", nombre, dni, telefono);
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(dni);
 	}
@@ -120,6 +115,11 @@ public class Cliente {
 			return false;
 		Cliente other = (Cliente) obj;
 		return Objects.equals(dni, other.dni);
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s %s (%s)", nombre, dni, telefono);
 	}
 
 }
