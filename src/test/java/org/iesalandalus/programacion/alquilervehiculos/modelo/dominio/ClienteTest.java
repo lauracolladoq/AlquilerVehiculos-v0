@@ -123,7 +123,7 @@ public class ClienteTest {
 	
 	@Test
 	void toStringDevuelveLaCadenaEsperada() {
-		assertEquals(String.format("%s - %s (%s)", NOMBRE_VALIDO, DNI_VALIDO, TELEFONO_VALIDO), cliente.toString());
+		assertEquals(String.format("%s %s (%s)", NOMBRE_VALIDO, DNI_VALIDO, TELEFONO_VALIDO), cliente.toString());
 	}
 
 }
