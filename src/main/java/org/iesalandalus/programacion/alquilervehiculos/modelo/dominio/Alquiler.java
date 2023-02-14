@@ -13,7 +13,7 @@ public class Alquiler {
 	// ser posterior a hoy. La fecha de devolución no puede ser igual o anterior a
 	// la fecha de alquiler y tampoco puede ser posterior a hoy.
 	static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	private static final int PRECIO_DIA = 29;
+	private static final int PRECIO_DIA = 20;
 	private LocalDate fechaAlquiler;
 	private LocalDate fechaDevolucion;
 
@@ -118,7 +118,8 @@ public class Alquiler {
 			// Saco los días entre la fechaAlquiler y la fechaDevolucion
 			dias = (int) ChronoUnit.DAYS.between(getFechaAlquiler(), getFechaDevolucion());
 		}
-		return (int) (PRECIO_DIA * dias);
+		return (int) ((PRECIO_DIA + turismo.getCilindrada() / 10) * dias);
+
 	}
 
 	// Un alquiler será igual a otro si es el mismo cliente, el mismo turismo y la
