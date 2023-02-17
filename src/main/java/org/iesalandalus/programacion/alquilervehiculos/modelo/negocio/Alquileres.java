@@ -20,33 +20,33 @@ public class Alquileres {
 
 	// devolverá una nueva lista con los mismos elementos (no debe crear nuevas
 	// instancias)
-	public ArrayList<Alquiler> get() {
+	public List<Alquiler> get() {
 		return new ArrayList<Alquiler>(coleccionAlquileres);
 	}
 
 	// para un cliente dado, que devolverá una nueva lista con los alquileres para
 	// dicho cliente (no debe crear nuevas instancias).
-	public ArrayList<Alquiler> get(Cliente cliente) {
+	public List<Alquiler> get(Cliente cliente) {
 		List<Alquiler> alqCliente = new ArrayList<Alquiler>();
 		for (Alquiler alquiler : coleccionAlquileres) {
 			if (alquiler.getCliente().equals(cliente)) {
 				alqCliente.add(alquiler);
 			}
 		}
-		return (ArrayList<Alquiler>) alqCliente;
+		return alqCliente;
 
 	}
 
 	// para un turismo dado, que devolverá una nueva lista con los alquileres para
 	// dicho turismo (no debe crear nuevas instancias).
-	public ArrayList<Alquiler> get(Turismo turismo) {
+	public List<Alquiler> get(Turismo turismo) {
 		List<Alquiler> alqTurismo = new ArrayList<Alquiler>();
 		for (Alquiler alquiler : coleccionAlquileres) {
 			if (alquiler.getTurismo().equals(turismo)) {
 				alqTurismo.add(alquiler);
 			}
 		}
-		return (ArrayList<Alquiler>) alqTurismo;
+		return alqTurismo;
 	}
 
 	// devolverá la cantidad de elementos que contiene la lista
@@ -69,12 +69,14 @@ public class Alquileres {
 				throw new OperationNotSupportedException("ERROR: El turismo está actualmente alquilado.");
 			}
 			if (alquiler.getCliente().equals(cliente) && alquiler.getFechaDevolucion() != null) {
-				if (alquiler.getFechaDevolucion().isAfter(fechaAlquiler) || alquiler.getFechaDevolucion().isEqual(fechaAlquiler)) {
+				if (alquiler.getFechaDevolucion().isAfter(fechaAlquiler)
+						|| alquiler.getFechaDevolucion().isEqual(fechaAlquiler)) {
 					throw new OperationNotSupportedException("ERROR: El cliente tiene un alquiler posterior.");
 				}
 			}
 			if (alquiler.getTurismo().equals(turismo) && alquiler.getFechaDevolucion() != null) {
-				if (alquiler.getFechaDevolucion().isAfter(fechaAlquiler) || alquiler.getFechaDevolucion().isEqual(fechaAlquiler)) {
+				if (alquiler.getFechaDevolucion().isAfter(fechaAlquiler)
+						|| alquiler.getFechaDevolucion().isEqual(fechaAlquiler)) {
 					throw new OperationNotSupportedException("ERROR: El turismo tiene un alquiler posterior.");
 				}
 			}
@@ -113,7 +115,7 @@ public class Alquileres {
 
 	// devolverá el alquiler si éste se encuentra en la lista y null en caso
 	// contrario
-	Alquiler buscar(Alquiler alquiler) {
+	public Alquiler buscar(Alquiler alquiler) {
 		Alquiler comodinBuscar = null;
 		if (alquiler == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un alquiler nulo.");

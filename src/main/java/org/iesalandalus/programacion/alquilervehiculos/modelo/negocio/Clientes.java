@@ -18,7 +18,7 @@ public class Clientes {
 
 	// devolverá una nueva lista con los mismos elementos (no debe crear nuevas
 	// instancias)
-	public ArrayList<Cliente> get() {
+	public List<Cliente> get() {
 		return new ArrayList<Cliente>(coleccionClientes);
 		// Devuelve un list pero en verdad de vuelve un ArrayList
 	}

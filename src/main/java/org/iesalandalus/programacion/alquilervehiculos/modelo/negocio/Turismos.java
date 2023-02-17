@@ -18,7 +18,7 @@ public class Turismos {
 
 	// devolverá una nueva lista con los mismos elementos (no debe crear nuevas
 	// instancias).
-	public ArrayList<Turismo> get() {
+	public List<Turismo> get() {
 		return new ArrayList<Turismo>(coleccionTurismos);
 	}
 
