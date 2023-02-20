@@ -3,6 +3,9 @@ package org.iesalandalus.programacion.alquilervehiculos.vista;
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.alquilervehiculos.controlador.Controlador;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Alquiler;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Cliente;
+import org.iesalandalus.programacion.alquilervehiculos.modelo.dominio.Turismo;
 
 public class Vista {
 	private Controlador controlador;
@@ -20,8 +23,12 @@ public class Vista {
 	// Utilizará los correspondientes métodos de la clase Consola y llamará al
 	// método ejecutar de esta clase que describiré a continuación.
 	public void comenzar() {
-		Consola.mostrarMenu();
-
+		Opcion elegirOpcion = null;
+		do {
+			elegirOpcion = Consola.elegirOpcion();
+			Consola.mostrarMenu();
+			ejecutar(elegirOpcion);
+		} while (elegirOpcion != Opcion.SALIR);
 	}
 
 	// mostrará un mensaje de despedida por consola
@@ -31,6 +38,59 @@ public class Vista {
 
 	// dependiendo de la opción pasada por parámetro invocará a un método o a otro
 	private void ejecutar(Opcion opcion) {
+		switch (opcion.ordinal()) {
+		case 0:
+			terminar();
+			break;
+		case 1:
+			insertarCliente();
+			break;
+		case 2:
+			insertarTurismo();
+			break;
+		case 3:
+			insertarAlquiler();
+			break;
+		case 4:
+			buscarCliente();
+			break;
+		case 5:
+			buscarTurismo();
+			break;
+		case 6:
+			buscarAlquiler();
+			break;
+		case 7:
+			modificarCliente();
+			break;
+		case 8:
+			devolverAlquiler();
+			break;
+		case 9:
+			borrarCliente();
+			break;
+		case 10:
+			borrarTurismo();
+			break;
+		case 11:
+			borrarAlquiler();
+			break;
+		case 12:
+			listarClientes();
+			break;
+		case 13:
+			listarTurismos();
+			break;
+		case 14:
+			listarAlquileres();
+			break;
+		case 15:
+			listarAlquileresCliente();
+			break;
+		case 16:
+			listarAlquileresTurismo();
+			break;
+		}
 
 	}
 
@@ -101,11 +161,22 @@ public class Vista {
 	}
 
 	private void modificarCliente() {
-
+		try {
+			Consola.mostrarCabecera("Modificar cliente");
+			controlador.modificar(Consola.leerCliente(), Consola.leerNombre(), Consola.leerTelefono());
+			System.out.println("Cliente modificado correctamente");
+		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void devolverAlquiler() {
-
+		try {
+			Consola.mostrarCabecera("Devolver alquiler");
+			controlador.devolver(Consola.leerAlquiler(), Consola.leerFechaDevolucion());
+		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void borrarCliente() {
@@ -140,22 +211,61 @@ public class Vista {
 	}
 
 	private void listarClientes() {
-
+		try {
+			Consola.mostrarCabecera("Listar clientes");
+			for (Cliente clienteLista : controlador.getClientes()) {
+				System.out.println(clienteLista);
+			}
+		} catch (IllegalArgumentException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private void listarTurismos() {
+		try {
+			Consola.mostrarCabecera("Listar turismos");
+			for (Turismo turismoLista : controlador.getTurismos()) {
+				System.out.println(turismoLista);
+			}
+		} catch (IllegalArgumentException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
 	private void listarAlquileres() {
+		try {
+			Consola.mostrarCabecera("Listar alquileres");
+			for (Alquiler alquilerLista : controlador.getAlquileres()) {
+				System.out.println(alquilerLista);
+			}
+		} catch (IllegalArgumentException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
 	private void listarAlquileresCliente() {
+		try {
+			Consola.mostrarCabecera("Listar alquileres por clientes");
+			for (Alquiler alquilerListaCliente : controlador.getAlquileres(Consola.leerCliente())) {
+				System.out.println(alquilerListaCliente);
+			}
+		} catch (IllegalArgumentException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
 	private void listarAlquileresTurismo() {
+		try {
+			Consola.mostrarCabecera("Listar alquileres por turismos");
+			for (Alquiler alquilerListaTurismo : controlador.getAlquileres(Consola.leerTurismo())) {
+				System.out.println(alquilerListaTurismo);
+			}
+		} catch (IllegalArgumentException | NullPointerException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 }
