@@ -20,7 +20,7 @@ public class Consola {
 
 	// mostrará por pantalla el mensaje pasado por parámetro y luego mostrará un
 	// subrayado compuesto de guiones con su misma longitud.
-	private static void mostrarCabecera(String mensaje) {
+	public static void mostrarCabecera(String mensaje) {
 		System.out.println(mensaje);
 		System.out.println("-".repeat(mensaje.length()));
 
@@ -28,7 +28,7 @@ public class Consola {
 
 	// mostrará una cabecera informando del cometido de la aplicación y mostrará las
 	// diferentes opciones del menú.
-	private static void mostrarMenu() {
+	public static void mostrarMenu() {
 		System.out.println("Menú de opciones");
 
 		for (int i = 0; i < (Opcion.values().length); i++) {
@@ -127,7 +127,7 @@ public class Consola {
 	}
 
 	public static LocalDate leerFechaDevolucion() {
-		return leerFecha("Introduce la fecha de devolución; ");
+		return leerFecha("Introduce la fecha de devolución: ");
 
 	}
 }
