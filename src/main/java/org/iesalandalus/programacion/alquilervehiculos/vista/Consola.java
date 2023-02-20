@@ -55,12 +55,11 @@ public class Consola {
 	private static LocalDate leerFecha(String mensaje) {
 		LocalDate fecha = null;
 		try {
-			System.out.println(mensaje);
-			String cadena = Entrada.cadena();
+			String cadena = leerCadena(mensaje);
 			fecha = LocalDate.parse(cadena, FORMATO_FECHA);
 
 		} catch (DateTimeParseException e) {
-			System.out.println("La fecha no es válida, inténtalo de nuevo");
+			System.out.println(e.getMessage());
 			fecha = null;
 		}
 		return fecha;
@@ -72,51 +71,63 @@ public class Consola {
 	// válido.
 	public static Opcion elegirOpcion() {
 		Opcion opcion = null;
-		leerEntero(String mensaje);
-		return entero;
 		do {
-			leerEntero(mensaje);
-
-		} while (entero != null);
+			try {
+				int num = leerEntero("Introduce la opción que deseas realizar");
+				// Me comprueba el num en la clase opcion
+				opcion = Opcion.get(num);
+			} catch (NullPointerException e) {
+				System.out.println(e.getMessage());
+			}
+		} while (opcion == null);
+		return opcion;
 	}
 
+	// harán uso de los métodos privados anteriormente creados y que son
+	// autodescriptivos
+
 	public static Cliente leerCliente() {
-		return null;
+
+		return new Cliente(leerCadena("Introduce el nombre del cliente: "), ("Introduce el DNI del cliente: "),
+				("Introduce el teléfono del cliente: "));
 
 	}
 
 	public static Cliente leerClienteDni() {
-		return null;
+		return Cliente.getClienteConDni(leerCadena("Introduce el DNI del cliente: "));
 
 	}
 
 	public static String leerNombre() {
-		return null;
+		return leerCadena("Introduce el nombre: ");
 
 	}
 
 	public static String leerTelefono() {
-		return null;
+		return leerCadena("Introduce el teléfono: ");
 
 	}
 
 	public static Turismo leerTurismo() {
-		return null;
+		return new Turismo(leerCadena("Introduce la marca del turismo: "),
+				(leerCadena("Introduce el modelo del turismo: ")),
+				(leerEntero("Introduce la cilindrada del turismo: ")),
+				(leerCadena("Introduce la matrícula del turismo: ")));
 
 	}
 
 	public static Turismo leerTurismoMatricula() {
-		return null;
+		return Turismo.getTurismoConMatricula(leerCadena("Introduce la matrícula del turismo: "));
 
 	}
 
 	public static Alquiler leerAlquiler() {
-		return null;
+		return new Alquiler(leerClienteDni(), leerTurismoMatricula(), leerFecha("Introduce la fecha del alquiler: "));
 
 	}
 
 	public static LocalDate leerFechaDevolucion() {
-		return null;
+		return leerFecha("Introduce la fecha de devolución; ");
 
 	}
 }

@@ -23,7 +23,7 @@ public enum Opcion {
 
 	// Crea el método esOrdinalValido que comprobará si el ordinal pasado se
 	// encuentra entre los ordinales válidos o no.
-	private boolean esOrdinalValido(int ordinal) {
+	private static boolean esOrdinalValido(int ordinal) {
 		boolean comodin = false;
 		if (ordinal > 0 && ordinal < Opcion.values().length) {
 			comodin = true;
@@ -34,7 +34,7 @@ public enum Opcion {
 
 	// Crea el método get que devolverá la opción adecuada si el ordinal pasado es
 	// correcto y lanzará una excepción en caso contrario.
-	public Opcion get(int ordinal) {
+	public static Opcion get(int ordinal) {
 		Opcion comodin = null;
 		if (esOrdinalValido(ordinal) == true) {
 			comodin = Opcion.values()[ordinal];
