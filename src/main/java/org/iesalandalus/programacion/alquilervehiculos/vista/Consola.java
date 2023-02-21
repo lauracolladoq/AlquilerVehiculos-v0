@@ -29,23 +29,25 @@ public class Consola {
 	// mostrará una cabecera informando del cometido de la aplicación y mostrará las
 	// diferentes opciones del menú.
 	public static void mostrarMenu() {
-		System.out.println("Menú de opciones");
+		mostrarCabecera("     MENÚ DE OPCIONES     ");
 
 		for (int i = 0; i < (Opcion.values().length); i++) {
 			System.out.println(Opcion.values()[i]);
 		}
+		//Para que selecciona quede con salto de línea
+		System.out.println("");
 	}
 
 	// mostrará el mensaje pasado por parámetro y devolverá la cadena que lea por
 	// consola.
 	private static String leerCadena(String mensaje) {
-		System.out.println(mensaje);
+		System.out.print(mensaje);
 		return Entrada.cadena();
 
 	}
 
 	private static Integer leerEntero(String mensaje) {
-		System.out.println(mensaje);
+		System.out.printf("%s", mensaje);
 		return Entrada.entero();
 
 	}
@@ -59,7 +61,7 @@ public class Consola {
 			fecha = LocalDate.parse(cadena, FORMATO_FECHA);
 
 		} catch (DateTimeParseException e) {
-			System.out.println(e.getMessage());
+			System.out.print(e.getMessage());
 			fecha = null;
 		}
 		return fecha;
@@ -73,7 +75,7 @@ public class Consola {
 		Opcion opcion = null;
 		do {
 			try {
-				int num = leerEntero("Introduce la opción que deseas realizar");
+				int num = leerEntero("Selecciona una opción: ");
 				// Me comprueba el num en la clase opcion
 				opcion = Opcion.get(num);
 			} catch (NullPointerException e) {
@@ -88,8 +90,8 @@ public class Consola {
 
 	public static Cliente leerCliente() {
 
-		return new Cliente(leerCadena("Introduce el nombre del cliente: "), ("Introduce el DNI del cliente: "),
-				("Introduce el teléfono del cliente: "));
+		return new Cliente(leerCadena("Introduce el nombre del cliente: "), leerCadena("Introduce el DNI del cliente: "),
+				leerCadena("Introduce el teléfono del cliente: "));
 
 	}
 

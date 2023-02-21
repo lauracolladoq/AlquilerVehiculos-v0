@@ -7,7 +7,7 @@ public enum Opcion {
 	/// una cadena con el texto adecuado a mostrarnos.
 	SALIR("Salir"), INSERTAR_CLIENTE("Insertar cliente"), INSERTAR_TURISMO("Insertar turismo"),
 	INSERTAR_ALQUILER("Insertar alquiler"), BUSCAR_CLIENTE("Buscar cliente"), BUSCAR_TURISMO("Buscar turismo"),
-	BUSCAR_ALQUILER("Buscar alquiler"), MODIFICAR_CLIENTE("Modificar cliente"), DEVOLVER_CLIENTE("Devolver cliente"),
+	BUSCAR_ALQUILER("Buscar alquiler"), MODIFICAR_CLIENTE("Modificar cliente"), DEVOLVER_ALQUILER("Devolver alquiler"),
 	BORRAR_CLIENTE("Borrar cliente"), BORRAR_TURISMO("Borrar turismo"), BORRAR_ALQUILER("Borrar alquiler"),
 	LISTAR_CLIENTES("Listar clientes"), LISTAR_TURISMOS("Listar turismos"), LISTAR_ALQUILERES("Listar alquileres"),
 	LISTAR_ALQUILERES_CLIENTE("Listar alquileres del cliente"),
@@ -18,14 +18,14 @@ public enum Opcion {
 	private String texto;
 
 	private Opcion(String texto) {
-
+		this.texto = texto;
 	}
 
 	// Crea el método esOrdinalValido que comprobará si el ordinal pasado se
 	// encuentra entre los ordinales válidos o no.
 	private static boolean esOrdinalValido(int ordinal) {
 		boolean comodin = false;
-		if (ordinal > 0 && ordinal < Opcion.values().length) {
+		if (ordinal >= 0 && ordinal < Opcion.values().length) {
 			comodin = true;
 		}
 		return comodin;
@@ -36,7 +36,7 @@ public enum Opcion {
 	// correcto y lanzará una excepción en caso contrario.
 	public static Opcion get(int ordinal) {
 		Opcion comodin = null;
-		if (esOrdinalValido(ordinal) == true) {
+		if (esOrdinalValido(ordinal)) {
 			comodin = Opcion.values()[ordinal];
 		} else {
 			throw new NullPointerException("ERROR: El parámetro introducido no es adecuado");
@@ -50,7 +50,7 @@ public enum Opcion {
 
 	@Override
 	public String toString() {
-		return String.format("%d %s", ordinal(), texto);
+		return String.format("%d. %s", ordinal(), texto);
 	}
 
 }

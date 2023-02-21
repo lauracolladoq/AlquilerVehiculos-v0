@@ -25,15 +25,16 @@ public class Vista {
 	public void comenzar() {
 		Opcion elegirOpcion = null;
 		do {
-			elegirOpcion = Consola.elegirOpcion();
 			Consola.mostrarMenu();
+			elegirOpcion = Consola.elegirOpcion();
 			ejecutar(elegirOpcion);
 		} while (elegirOpcion != Opcion.SALIR);
 	}
 
 	// mostrará un mensaje de despedida por consola
 	public void terminar() {
-		System.out.println("Hasta luego Lucas!");
+		String mensaje = "Hasta luego Lucas!";
+		System.out.printf("%n%s", mensaje);
 	}
 
 	// dependiendo de la opción pasada por parámetro invocará a un método o a otro
@@ -103,7 +104,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Insertar cliente");
 			controlador.insertar(Consola.leerCliente());
-			System.out.println("Cliente insertado correctamente");
+			String mensaje = "Cliente insertado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -113,7 +115,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Insertar turismo");
 			controlador.insertar(Consola.leerTurismo());
-			System.out.println("Turismo insertado correctamente");
+			String mensaje = "Turismo insertado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -123,7 +126,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Insertar alquiler");
 			controlador.insertar(Consola.leerAlquiler());
-			System.out.println("Alquiler insertado correctamente");
+			String mensaje = "Alquiler insertado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -132,8 +136,9 @@ public class Vista {
 	private void buscarCliente() {
 		try {
 			Consola.mostrarCabecera("Buscar cliente");
-			controlador.buscar(Consola.leerClienteDni());
-			System.out.println("Cliente buscando correctamente");
+			System.out.println(controlador.buscar(Consola.leerClienteDni()));
+			String mensaje = "Cliente buscado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
@@ -142,8 +147,9 @@ public class Vista {
 	private void buscarTurismo() {
 		try {
 			Consola.mostrarCabecera("Buscar turismo");
-			controlador.buscar(Consola.leerTurismoMatricula());
-			System.out.println("Turismo buscando correctamente");
+			System.out.println(controlador.buscar(Consola.leerTurismoMatricula()));
+			String mensaje = "Turismo buscado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
@@ -153,8 +159,9 @@ public class Vista {
 
 		try {
 			Consola.mostrarCabecera("Buscar alquiler");
-			controlador.buscar(Consola.leerAlquiler());
-			System.out.println("Alquiler buscando correctamente");
+			System.out.println(controlador.buscar(Consola.leerAlquiler()));
+			String mensaje = "Alquiler buscado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
@@ -164,7 +171,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Modificar cliente");
 			controlador.modificar(Consola.leerCliente(), Consola.leerNombre(), Consola.leerTelefono());
-			System.out.println("Cliente modificado correctamente");
+			String mensaje = "Cliente modificado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -174,6 +182,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Devolver alquiler");
 			controlador.devolver(Consola.leerAlquiler(), Consola.leerFechaDevolucion());
+			String mensaje = "Alquiler devuelto correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -183,7 +193,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Borrar cliente");
 			controlador.borrar(Consola.leerClienteDni());
-			System.out.println("Cliente borrado correctamente");
+			String mensaje = "Cliente borrado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -193,7 +204,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Borrar turismo");
 			controlador.borrar(Consola.leerTurismoMatricula());
-			System.out.println("Turismo borrado correctamente");
+			String mensaje = "Turismo borrado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -204,7 +216,8 @@ public class Vista {
 		try {
 			Consola.mostrarCabecera("Borrar alquiler");
 			controlador.borrar(Consola.leerAlquiler());
-			System.out.println("Alquiler borrado correctamente");
+			String mensaje = "Alquiler borrado correctamente";
+			System.out.printf("%n%s%n%n", mensaje);
 		} catch (IllegalArgumentException | NullPointerException | OperationNotSupportedException e) {
 			System.out.println(e.getMessage());
 		}
@@ -219,6 +232,7 @@ public class Vista {
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("");
 	}
 
 	private void listarTurismos() {
@@ -230,6 +244,7 @@ public class Vista {
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("");
 
 	}
 
@@ -242,13 +257,14 @@ public class Vista {
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("");
 
 	}
 
 	private void listarAlquileresCliente() {
 		try {
 			Consola.mostrarCabecera("Listar alquileres por clientes");
-			for (Alquiler alquilerListaCliente : controlador.getAlquileres(Consola.leerCliente())) {
+			for (Alquiler alquilerListaCliente : controlador.getAlquileres(Consola.leerClienteDni())) {
 				System.out.println(alquilerListaCliente);
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
@@ -260,12 +276,14 @@ public class Vista {
 	private void listarAlquileresTurismo() {
 		try {
 			Consola.mostrarCabecera("Listar alquileres por turismos");
-			for (Alquiler alquilerListaTurismo : controlador.getAlquileres(Consola.leerTurismo())) {
+			for (Alquiler alquilerListaTurismo : controlador.getAlquileres(Consola.leerTurismoMatricula())) {
 				System.out.println(alquilerListaTurismo);
+				System.out.println("");
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("");
 
 	}
 }
